@@ -1,0 +1,67 @@
+parameters:
+  paths:
+    - ../../src/ProductManagement
+
+
+  layers:
+    -
+      name: Application
+      collectors:
+        -
+          type: className
+          regex: App\\ProductManagement\\Application\\.*
+    -
+      name: DomainModel
+      collectors:
+        -
+          type: className
+          regex: App\\ProductManagement\\DomainModel\\.*
+    -
+      name: Infrastructure
+      collectors:
+        -
+          type: className
+          regex: App\\ProductManagement\\Infrastructure\\.*
+    -
+      name: ReadModel
+      collectors:
+        -
+          type: className
+          regex: App\\ProductManagement\\ReadModel\\.*
+    -
+      name: UserInterface
+      collectors:
+        -
+          type: className
+          regex: App\\ProductManagement\\UserInterface\\.*
+    -
+      name: LocalShared
+      collectors:
+        -
+          type: className
+          regex: App\\ProductManagement\\Shared\\.*
+    -
+      name: Shared
+      collectors:
+        -
+          type: directory
+          regex: src/Shared/*
+  ruleset:
+    DomainModel:
+      - LocalShared
+    Application:
+      - ReadModel
+      - DomainModel
+      - LocalShared
+    Infrastructure:
+      - DomainModel
+      - ReadModel
+      - LocalShared
+    ReadModel:
+      - LocalShared
+    UserInterface:
+      - Application
+      - ReadModel
+      - LocalShared
+    LocalShared:
+      - Shared

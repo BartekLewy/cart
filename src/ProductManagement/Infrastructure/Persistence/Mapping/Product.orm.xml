@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\ProductManagement\DomainModel\Product"
+            repository-class="App\ProductManagement\Infrastructure\Persistence\DoctrineProductRepository"
+            table="products"
+    >
+        <id name="id" type="product_id" column="id">
+            <generator strategy="NONE"/>
+        </id>
+
+        <one-to-one field="category" target-entity="App\ProductManagement\DomainModel\Category">
+            <join-column name="category_id" referenced-column-name="id"/>
+        </one-to-one>
+        <embedded name="name" class="App\ProductManagement\DomainModel\ProductName" use-column-prefix="false"/>
+        <embedded name="description" class="App\ProductManagement\DomainModel\ProductDescription" use-column-prefix="false" />
+        <embedded name="price" class="App\ProductManagement\DomainModel\Price" use-column-prefix="false"/>
+
+    </entity>
+</doctrine-mapping>

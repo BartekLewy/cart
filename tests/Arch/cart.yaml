@@ -1,0 +1,69 @@
+parameters:
+  paths:
+    - ../../src/Cart
+
+  layers:
+    -
+      name: Application
+      collectors:
+        -
+          type: className
+          regex: App\\Cart\\Application\\.*
+    -
+      name: DomainModel
+      collectors:
+        -
+          type: className
+          regex: App\\Cart\\DomainModel\\.*
+    -
+      name: Contracts
+      collectors:
+        - type: className
+          regex: App\\Cart\\Contracts\\.*
+    -
+      name: Infrastructure
+      collectors:
+        - type: className
+          regex: App\\Cart\\Infrastructure\\.*
+    -
+      name: ReadModel
+      collectors:
+      - type: className
+        regex: App\\Cart\\ReadModel\\.*
+    -
+      name: UserInterface
+      collectors:
+        - type: className
+          regex: App\\Cart\\UserInterface\\.*
+    -
+      name: LocalShared
+      collectors:
+        - type: className
+          regex: App\\Cart\\Shared\\.*
+    -
+      name: Shared
+      collectors:
+        -
+          type: directory
+          regex: src/Shared/*
+  ruleset:
+    DomainModel:
+      - Contracts
+      - LocalShared
+    Application:
+      - ReadModel
+      - DomainModel
+      - LocalShared
+    Infrastructure:
+      - DomainModel
+      - ReadModel
+      - LocalShared
+    UserInterface:
+      - Application
+      - ReadModel
+      - LocalShared
+    LocalShared:
+      - Shared
+    ReadModel:
+      - DomainModel
+      - LocalShared

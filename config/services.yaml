@@ -1,0 +1,53 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    App\Cart\Application\CreateCartHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\Cart\Application\CreateCart }
+
+    App\Cart\Application\AddCartItemToCartHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\Cart\Application\AddCartItemToCart }
+
+    App\Cart\Application\ChangeCartItemQuantityHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\Cart\Application\ChangeCartItemQuantity }
+
+    App\Cart\Application\RemoveCartItemFromCartHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\Cart\Application\RemoveCartItemFromCart }
+
+    App\Cart\Application\GetCartHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\Cart\Application\GetCart }
+
+    App\ProductManagement\Application\AddProductHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\ProductManagement\Application\AddProduct }
+    App\ProductManagement\Application\ChangeProductPriceHandler:
+        tags:
+            - { name: messenger.message_handler, handles: App\ProductManagement\Application\ChangeProductPrice }
+
+when@test:
+    services:
+        _defaults:
+            public: true
