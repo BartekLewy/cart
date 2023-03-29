@@ -9,7 +9,8 @@ Aplikacja do zarządzania koszykami zakupowymi.
 - Make
 
 ## Instalacja
-- `git clone <url>`
+- `git clone https://github.com/BartekLewy/cart`
+- `cd cart`
 - `cp .env.example .env`
 - `make build`
 
@@ -31,11 +32,15 @@ Aby wywołać dostępne komendy należy wejść do kontenera z aplikacją:
 - `make test`
 - `make deptract`
 
-## Na przyszłość do zrobienia
-- [ ] Rest API
+## Na przyszłość do zrobienia / Gdybym miał więcej czasu 
+### .... lub byłby nieskończenie długi :)
 - [ ] Dodanie testów integracyjnych na poziomie Cli
-- [ ] Dodanie kontekstu użytkownika
-- [ ] Rozbudowa modułu product-management
-- [ ] Podział testów na testsuites
 - [ ] Dodanie wskaźnika pokrycia testów
+- [ ] Podział testów na testsuites
+- [ ] Można pokusić się o wzorcowy Event Sourcing w koszyku
 - [ ] Audyt log dla operacji na koszykach
+- [ ] Dodanie kontekstu użytkownika
+- [ ] Rest API wg. standardu OpenAPI
+- [ ] Rozbudowa modułu product-management
+- [ ] Uruchamianie testów w Pipeline przy Pull Requestach (Github Actions)
+- [ ] Frontend :)
