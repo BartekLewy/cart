@@ -36,3 +36,6 @@ Aby wywołać dostępne komendy należy wejść do kontenera z aplikacją:
 - [ ] Dodanie testów integracyjnych na poziomie Cli
 - [ ] Dodanie kontekstu użytkownika
 - [ ] Rozbudowa modułu product-management
+- [ ] Podział testów na testsuites
+- [ ] Dodanie wskaźnika pokrycia testów
+- [ ] Audyt log dla operacji na koszykach
